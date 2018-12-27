@@ -32,3 +32,7 @@ using Android.App;
 // Add some common permissions, these can be removed if not needed
 [assembly: UsesPermission(Android.Manifest.Permission.Internet)]
 [assembly: UsesPermission(Android.Manifest.Permission.WriteExternalStorage)]
+[assembly: UsesPermission(Android.Manifest.Permission.ReadExternalStorage)]
+[assembly: UsesPermission(Android.Manifest.Permission.Camera)]
+[assembly: UsesFeature("android.hardware.camera", Required = false)] // quando = false,declara que o software foi projetado para funcionar mesmo se a câmera estiver ausente
+[assembly: UsesFeature("android.hardware.camera.autofocus", Required = false)]
