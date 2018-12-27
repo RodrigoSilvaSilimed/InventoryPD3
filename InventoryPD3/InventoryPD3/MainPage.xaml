@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:InventoryPD3"
+             x:Class="InventoryPD3.MainPage">
+
+    <StackLayout BackgroundColor="#FFBF00" Padding="30" Spacing="30"> <!--Padding espaçamento das bordas e Spacing para afastar os elementos empilhados-->
+        <!-- Place new controls here -->
+        
+        <Image Source=""  x:Name="Logo"/>
+        <Entry Placeholder="Digite o CEP" PlaceholderColor="#FFBF00" BackgroundColor="#FFFFFF"  x:Name="ttb_CEP"/>
+        <Button Text="Buscar CEP" TextColor="#FFFFFF" BackgroundColor="#00416B" x:Name="btn_Buscar_CEP"/>
+        <Button Text="Scan" TextColor="#FFFFFF" BackgroundColor="#00416B" x:Name="btn_ScanBarcode"/>
+        
+        <Label Text="" 
+           HorizontalOptions="Center"
+           VerticalOptions="CenterAndExpand"
+               x:Name="lb_Resultado"/>
+        <Label Text="" 
+           HorizontalOptions="Center"
+           VerticalOptions="CenterAndExpand"
+               x:Name="lb_Resultado_Scan"/>
+    </StackLayout>
+
+</ContentPage>
