@@ -12,6 +12,7 @@ using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Plugin.Media.Abstractions;
 using Plugin.Geolocator;
+using Firebase.Storage;
 
 namespace InventoryPD3
 {
@@ -176,9 +177,30 @@ namespace InventoryPD3
                 PhotoImage.Source = ImageSource.FromStream(() =>
                 {
                     var stream = file.GetStream();
-                    file.Dispose();
+                    //file.Dispose();
                     return stream;
                 });
+
+                //Envio para o FirebaseStorage
+                // Get any Stream - it can be FileStream, MemoryStream or any other type of Stream
+                //var stream = File.Open(@"C:\Users\you\file.png", FileMode.Open);
+                var stream2 = file.GetStream();
+
+                // Constructr FirebaseStorage, path to where you want to upload the file and Put it there
+                var task = new FirebaseStorage("inventorypd3.appspot.com")
+                       .Child("comissario1")
+                       .Child("20181227")
+                       //.Child("file.png")
+                       .Child("file.jpeg")
+                       .PutAsync(stream2);
+
+                file.Dispose();
+                // Track progress of the upload
+                //task.Progress.ProgressChanged += (s, e) => Console.WriteLine($"Progress: {e.Percentage} %");
+
+                // await the task to wait until upload completes and get the download url
+                var downloadUrl = await task;
+                lb_Resultado.Text = downloadUrl.ToString();
             }
             else
             {
