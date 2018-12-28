@@ -11,7 +11,8 @@
         <Entry Placeholder="Digite o CEP" PlaceholderColor="#FFBF00" BackgroundColor="#FFFFFF"  x:Name="ttb_CEP"/>
         <Button Text="Buscar CEP" TextColor="#FFFFFF" BackgroundColor="#00416B" x:Name="btn_Buscar_CEP"/>
         <Button Text="Scan" TextColor="#FFFFFF" BackgroundColor="#00416B" x:Name="btn_ScanBarcode"/>
-        <Button Text="Foto" TextColor="#FFFFFF" BackgroundColor="#00416b" x:Name="btn_Foto"/>
+        <Button Text="Foto" TextColor="#FFFFFF" BackgroundColor="#00416B" x:Name="btn_Foto"/>
+        <Button Text="GPS" TextColor="#FFFFFF" BackgroundColor="#00416B" x:Name="btn_GPS"/>
 
         <Label Text="" 
            HorizontalOptions="Center"

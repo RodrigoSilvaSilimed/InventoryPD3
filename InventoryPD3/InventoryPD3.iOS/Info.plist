@@ -43,6 +43,13 @@
     <string>This app needs access to microphone.</string>
     <key>NSPhotoLibraryAddUsageDescription</key>
     <string>This app needs access to the photo gallery.</string>
+
+    <key>NSLocationUsageDescription</key>
+    <string>Esse aplicativo precisa acessar a sua localização.</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>Esse aplicativo precisa acessar a sua localização.</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Esse aplicativo precisa acessar a sua localização.</string>
   
 </dict>
 </plist>

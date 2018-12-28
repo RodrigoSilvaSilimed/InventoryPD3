@@ -10,6 +10,8 @@ using ZXing.Net.Mobile.Forms;
 using Plugin.Media;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
+using Plugin.Media.Abstractions;
+using Plugin.Geolocator;
 
 namespace InventoryPD3
 {
@@ -22,6 +24,15 @@ namespace InventoryPD3
             btn_Buscar_CEP.Clicked += BuscarCEP; //+= concatenar e atribuir a um método que eu quiser
             btn_ScanBarcode.Clicked += Scanner;
             btn_Foto.Clicked += Camera;
+            btn_GPS.Clicked += GPS;
+
+            //exemplo de timer https://xamarinhelp.com/xamarin-forms-timer/ 
+            Device.StartTimer(TimeSpan.FromSeconds(1), () =>
+            {
+                // Do something 
+
+                return false; // True = Repeat again, False = Stop the timer
+            });
 
         }
 
@@ -67,6 +78,12 @@ namespace InventoryPD3
 
         }
 
+        public void GPS(object sender, EventArgs args)
+        {
+            TakeGPS();           
+
+        }
+
         public async void Scan()
         {
             //https://julianocustodio.com/2017/11/03/scanner/
@@ -104,18 +121,19 @@ namespace InventoryPD3
         }
         public async void TakeCam2()
         {
+            //https://github.com/jamesmontemagno/MediaPlugin
 
             var cameraStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Plugin.Permissions.Abstractions.Permission.Camera);
             var storageStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Plugin.Permissions.Abstractions.Permission.Storage);
             var GPSStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Plugin.Permissions.Abstractions.Permission.Location);
             
 
-            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+         /*   if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
             {
                 await DisplayAlert("No Camera", ":( No camera avaialble.", "OK");
                 return;
             }
-                
+           */     
             if (cameraStatus != PermissionStatus.Granted || storageStatus != PermissionStatus.Granted)
             {
                 var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Camera, Permission.Storage });
@@ -127,14 +145,31 @@ namespace InventoryPD3
             {
                 var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
                 {
-
-                    Directory = "Pictures",
-                    Name = "test.jpg"
+                    SaveToAlbum = true,
+                    //Directory = "Pictures",
+                    Name = $"{DateTime.UtcNow}.jpg",
+                    CompressionQuality = 92, //0 é o mais comprimido. 92 é o recomendado
+                    CustomPhotoSize = 50,//50% do original
+                    //PhotoSize = PhotoSize.MaxWidthHeight,
+                    PhotoSize = PhotoSize.Medium,
+                    MaxWidthHeight = 2000,
+                    DefaultCamera = CameraDevice.Front
+                    //Name = "test.jpg"
                 });
-
 
                 if (file == null)
                     return;
+
+                //When your user takes a photo it will still store temporary data, but also if needed make a copy to the 
+                //public gallery (based on platform). In the MediaFile you will now see a AlbumPath that you can query as well.
+
+                //Get the public album path
+                var aPpath = file.AlbumPath;
+
+                //Get private path
+                var path = file.Path;
+
+                
 
                 await DisplayAlert("Localização do Arquivo", file.Path, "OK");
 
@@ -151,6 +186,24 @@ namespace InventoryPD3
                 //On iOS you may want to send your user to the settings screen.
                 //CrossPermissions.Current.OpenAppSettings();
             }
+        }
+
+        public async void TakeGPS()
+        {
+            var locator = CrossGeolocator.Current;
+            locator.DesiredAccuracy = 50;
+
+            var position = await locator.GetPositionAsync(TimeSpan.FromSeconds(10));
+
+            /*posicao.acuracidade = position.Accuracy.ToString();
+            //posicao.altitude = position.Altitude.ToString();
+            posicao.latitude = string.Format("{0:0.0000000}", position.Latitude);
+            posicao.longitude = string.Format("{0:0.0000000}", position.Longitude);
+            posicao.norte = position.Heading.ToString();
+            posicao.velocidade = position.Speed.ToString();
+            posicao.timestamp = position.Timestamp.ToString();*/
+
+            lb_Resultado_Scan.Text = ("Posicao GPS: "+position.Latitude.ToString() + ", " + position.Longitude.ToString() + ". Hora GPS: "+position.Timestamp);
         }
     }
 }
