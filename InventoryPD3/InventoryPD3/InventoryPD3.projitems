@@ -19,6 +19,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Servico\BLL\BLL_CEP.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Servico\BLL\BLL_InventoryPD3.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Servico\Entidade\Dinosaur.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Servico\Entidade\Entidade_CEP.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Servico\Entidade\Entidade_GPS.cs" />
   </ItemGroup>

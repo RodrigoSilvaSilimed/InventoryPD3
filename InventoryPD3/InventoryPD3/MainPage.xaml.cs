@@ -13,6 +13,9 @@ using Plugin.Permissions.Abstractions;
 using Plugin.Media.Abstractions;
 using Plugin.Geolocator;
 using Firebase.Storage;
+using Firebase.Database; 
+using Firebase.Database.Query;
+
 
 namespace InventoryPD3
 {
@@ -216,6 +219,59 @@ namespace InventoryPD3
             locator.DesiredAccuracy = 50;
 
             var position = await locator.GetPositionAsync(TimeSpan.FromSeconds(10));
+
+            //Firebase https://rsamorim.azurewebsites.net/2017/11/07/reagindo-a-evento-com-xamarin-forms-e-firebase/
+            //doc git https://github.com/step-up-labs/firebase-database-dotnet
+            var firebase = new FirebaseClient("https://inventorypd3.firebaseio.com/");
+
+            // add new item to list of data and let the client generate new key for you (done offline)
+            /*var dino = await firebase
+              .Child("inventorypd3")
+              .PostAsync("nome:rodrigo");
+              */
+            /*var dinos = await firebase
+              .Child("dinosaurs")
+              .OrderByKey()
+              .StartAt("pterodactyl")
+              .LimitToFirst(2)
+              .OnceAsync<Dinosaur>();
+
+            foreach (var dino in dinos)
+            {
+                lb_Resultado.Text = lb_Resultado.Text + $"{dino.Key} is {dino.Object.Height}m high.";
+            }*/
+
+            Dinosaur meudino = new Dinosaur();
+
+            meudino.nome = "Rodrigo";
+            meudino.Height = 1.78;
+
+
+            var dino = await firebase
+              .Child("dinosaurs")
+              .PostAsync(meudino);
+
+            lb_Resultado.Text = lb_Resultado.Text + $"{dino.Key} is {dino.Object.Height}m high.";
+
+            await firebase
+              .Child("dinosaurs")
+              .Child("t-rex")
+              .PutAsync(meudino);
+
+            // note that there is another overload for the PostAsync method which delegates the new key generation to the firebase server
+            //Console.WriteLine($"Key for the new dinosaur: {dino.Key}");
+
+            // add new item directly to the specified location (this will overwrite whatever data already exists at that location)
+            /* await firebase
+               .Child("dinosaurs")
+               .Child("t-rex")
+               .PutAsync("com overwrite");
+
+             // delete given child node
+             /*await firebase
+               .Child("dinosaurs")
+               .Child("t-rex")
+               .DeleteAsync();*/
 
             /*posicao.acuracidade = position.Accuracy.ToString();
             //posicao.altitude = position.Altitude.ToString();
