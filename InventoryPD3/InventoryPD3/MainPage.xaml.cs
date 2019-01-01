@@ -217,9 +217,9 @@ namespace InventoryPD3
         {
             var locator = CrossGeolocator.Current;
             locator.DesiredAccuracy = 50;
-
+            
             var position = await locator.GetPositionAsync(TimeSpan.FromSeconds(10));
-
+            
             //Firebase https://rsamorim.azurewebsites.net/2017/11/07/reagindo-a-evento-com-xamarin-forms-e-firebase/
             //doc git https://github.com/step-up-labs/firebase-database-dotnet
             var firebase = new FirebaseClient("https://inventorypd3.firebaseio.com/");

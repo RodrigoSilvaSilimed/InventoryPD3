@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Pages.ScanPage">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#009999">
+            <StackLayout Margin="30">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*"/>                        
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+
+                    </Grid.RowDefinitions>
+                    <Image Scale="0.5" Grid.Column="0" Grid.Row="0" VerticalOptions="Fill" HorizontalOptions="CenterAndExpand" Source="GPSBuscando.png" x:Name="img_GPSStatus"/>
+                    <Image Scale="0.5" Grid.Column="1" Grid.Row="0" VerticalOptions="Fill" HorizontalOptions="CenterAndExpand" Source="wifiNOk.png" x:Name="img_WifiStatus"/>
+                    <Label Grid.Column="0" Grid.Row="1" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" Text="GPS" FontSize="16"/>
+                    <Label Grid.Column="1" Grid.Row="1" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" Text="Internet" FontSize="16"/>
+                    <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Text="Carregando Inventário..." FontSize="20" FontAttributes="Bold" x:Name="lb_Inventario"/>
+                    <Label Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Text="100 Unidades" FontSize="30" FontAttributes="Bold" TextColor="#C9F76F" x:Name="lb_Contagem"/>
+                    
+                </Grid>
+            </StackLayout>
+            <StackLayout>
+                <Button Image="barcodefoldedicon.png" VerticalOptions="Center" HorizontalOptions="Center" Scale="0.25" BackgroundColor="Transparent" Clicked="LerBarcode"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
