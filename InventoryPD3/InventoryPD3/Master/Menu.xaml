@@ -4,24 +4,24 @@
              xmlns:paf="clr-namespace:Pages"             
              x:Class="Master.Menu">
     <MasterDetailPage.Master>
-        <ContentPage Title="Menu"  BackgroundColor="#009999">
+        <ContentPage Title="Menu"  BackgroundColor="#FF8257">
             <StackLayout>
-                <StackLayout BackgroundColor="#006363" Padding="30">
+                <StackLayout BackgroundColor="#FF8257" Padding="30">
                     <Image Source="user.png" HorizontalOptions="Center" VerticalOptions="Center"/>
                 </StackLayout>
                 <StackLayout Spacing="10">
-                    <Button Text="Scan" FontSize="20" TextColor="#C9F76F"  BackgroundColor="Transparent" Clicked="GoPaginaScan"/>
-                    <Button Text="Status" FontSize="20" TextColor="#C9F76F" BackgroundColor="Transparent" Clicked="GoPaginaStatus"/>
-                    <Button Text="Ajuda" FontSize="20" TextColor="#C9F76F" BackgroundColor="Transparent" Clicked="GoPaginaAjuda"/>
-                    <Button Text="Sobre" FontSize="20" TextColor="#C9F76F" BackgroundColor="Transparent" Clicked="GoPaginaSobre"/>
-                    <Button Text="Sair" FontSize="20" TextColor="#C9F76F" BackgroundColor="Transparent" Clicked="Sair"/>
+                    <Button Text="Scan" FontSize="20" TextColor="#7D7C7D"  BackgroundColor="Transparent" Clicked="GoPaginaScan"/>
+                    <Button Text="Status" FontSize="20" TextColor="#7D7C7D" BackgroundColor="Transparent" Clicked="GoPaginaStatus"/>
+                    <Button Text="Ajuda" FontSize="20" TextColor="#7D7C7D" BackgroundColor="Transparent" Clicked="GoPaginaAjuda"/>
+                    <Button Text="Sobre" FontSize="20" TextColor="#7D7C7D" BackgroundColor="Transparent" Clicked="GoPaginaSobre"/>
+                    <Button Text="Sair" FontSize="20" TextColor="#7D7C7D" BackgroundColor="Transparent" Clicked="Sair"/>
                 </StackLayout>
             </StackLayout>
         </ContentPage>
     </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
-        <NavigationPage BackgroundColor="#009999">
-            <!--Para usar a navegação eu preciso colocar NavigationPage e adicionar a pgina dentro da estrutura x:Arguments-->
+        <NavigationPage BackgroundColor="#FF8257">
+            <!-- F009999 Para usar a navegação eu preciso colocar NavigationPage e adicionar a pgina dentro da estrutura x:Arguments-->
             <x:Arguments>
                 <paf:ScanPage/>
             </x:Arguments>

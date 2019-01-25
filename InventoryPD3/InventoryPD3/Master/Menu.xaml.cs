@@ -29,12 +29,12 @@ namespace Master
 
         private void GoPaginaScan(object sender, EventArgs args)
         {
-            Detail = new Pages.ScanPage();
+            Detail = new NavigationPage(new Pages.ScanPage());
             IsPresented = false; //para esconder o menu
         }
         private void GoPaginaStatus(object sender, EventArgs args)
         {
-            Detail = (new Pages.StatusPage());
+            Detail = new NavigationPage(new Pages.StatusPage());
             IsPresented = false; //para esconder o menu
         }
         private void GoPaginaAjuda(object sender, EventArgs args)
