@@ -15,20 +15,31 @@ using Plugin.Geolocator;
 using Firebase.Storage;
 using Firebase.Database; 
 using Firebase.Database.Query;
+using SQLite;
+using System.Collections.ObjectModel;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 
 namespace InventoryPD3
 {
     public partial class MainPage : ContentPage
     {
+        //private readonly SQLiteAsyncConnection _databaseConnection;
+        //private ObservableCollection<Entidade_Leitura> _observableLeitura;
+
         public MainPage()
         {
             InitializeComponent();
+
+            //On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
+
+            //_databaseConnection = DependencyService.Get<ISQLite>().GetConnection();
 
             btn_Buscar_CEP.Clicked += BuscarCEP; //+= concatenar e atribuir a um método que eu quiser
             btn_ScanBarcode.Clicked += Scanner;
             btn_Foto.Clicked += Camera;
             btn_GPS.Clicked += GPS;
+            //OnAdd();
 
             //exemplo de timer https://xamarinhelp.com/xamarin-forms-timer/ 
             Device.StartTimer(TimeSpan.FromSeconds(1), () =>
@@ -283,5 +294,12 @@ namespace InventoryPD3
 
             lb_Resultado_Scan.Text = ("Posicao GPS: "+position.Latitude.ToString() + ", " + position.Longitude.ToString() + ". Hora GPS: "+position.Timestamp);
         }
+
+        //private async void OnAdd()
+        //{
+        //    Entidade_Leitura recipe = new Entidade_Leitura { Cliente = $"Entidade_Leitura {}" };
+        //    await _databaseConnection.InsertAsync(recipe);
+        //    _observableLeitura.Insert(0, recipe);
+        //}
     }
 }

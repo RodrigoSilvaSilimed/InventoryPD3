@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Pages.ConsultaPage">
+    <ContentPage.Content>
+        <StackLayout>
+			<ListView x:Name="ListaLeitura">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*" />
+									<ColumnDefinition Width="100" />
+								</Grid.ColumnDefinitions>
+								<Grid.RowDefinitions>
+									<RowDefinition Height="Auto">
+									</RowDefinition>
+								</Grid.RowDefinitions>
+								<StackLayout Grid.Column="0">
+									<Label Text="{Binding Cliente}" FontAttributes="Bold"/>
+									<Label Text="{Binding Data}" />
+									<Label Text="{Binding CodigoBarras}" />
+									<Label Text="{Binding TimestampLeitura}" />
+									<Label Text="{Binding GPSLatitude}" />
+									<Label Text="{Binding GPSLongitude}" />
+									<Label Text="{Binding GPSTimestamp}" />
+									<Label Text="{Binding GPSAccuracy}" />
+									<Label Text="{Binding Usuario}" />
+									<Label Text="{Binding CaminhoImg}" />
+									<Label Text="{Binding TimestampFoto}" />
+									<Label Text="{Binding urlImg}" />
+								</StackLayout>
+
+							</Grid>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+
+			</ListView>
+		</StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+	

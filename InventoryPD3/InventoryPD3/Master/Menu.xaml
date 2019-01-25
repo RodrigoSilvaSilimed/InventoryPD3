@@ -8,11 +8,29 @@
             <StackLayout>
                 <StackLayout BackgroundColor="#006363" Padding="30">
                     <Image Source="user.png" HorizontalOptions="Center" VerticalOptions="Center"/>
-                </StackLayout>
+
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+						</Grid.RowDefinitions>
+						<Image Scale="0.5" Grid.Column="0" Grid.Row="0" VerticalOptions="Fill" HorizontalOptions="CenterAndExpand" Source="GPSBuscando.png" x:Name="img_GPSStatus"/>
+						<Image Scale="0.5" Grid.Column="1" Grid.Row="0" VerticalOptions="Fill" HorizontalOptions="CenterAndExpand" Source="wifiNOk.png" x:Name="img_WifiStatus"/>
+						<Label Grid.Column="0" Grid.Row="1" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" Text="GPS" FontSize="16"/>
+						<Label Grid.Column="1" Grid.Row="1" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" Text="Internet" FontSize="16"/>
+					</Grid>
+				</StackLayout>
                 <StackLayout Spacing="10">
                     <Button Text="Scan" FontSize="20" TextColor="#C9F76F"  BackgroundColor="Transparent" Clicked="GoPaginaScan"/>
                     <Button Text="Status" FontSize="20" TextColor="#C9F76F" BackgroundColor="Transparent" Clicked="GoPaginaStatus"/>
-                    <Button Text="Ajuda" FontSize="20" TextColor="#C9F76F" BackgroundColor="Transparent" Clicked="GoPaginaAjuda"/>
+                    <Button Text="Consulta" FontSize="20" TextColor="#C9F76F" BackgroundColor="Transparent" Clicked="GoConsulta"/>
+					<Button Text="Ajuda" FontSize="20" TextColor="#C9F76F" BackgroundColor="Transparent" Clicked="GoPaginaAjuda"/>
                     <Button Text="Sobre" FontSize="20" TextColor="#C9F76F" BackgroundColor="Transparent" Clicked="GoPaginaSobre"/>
                     <Button Text="Sair" FontSize="20" TextColor="#C9F76F" BackgroundColor="Transparent" Clicked="Sair"/>
                 </StackLayout>

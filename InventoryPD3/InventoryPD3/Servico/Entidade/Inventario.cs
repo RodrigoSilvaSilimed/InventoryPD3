@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using SQLite;
+using SQLite.Net.Attributes;
 
-namespace InventoryPD3.Servico.Entidade
+namespace Servico.Entidade
 {
-    [Table("Leitura")]
-    public class Entidade_Leitura
+    public class Inventario
     {
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
         public string Cliente { get; set; }
         public string Data { get; set; }
         public string CodigoBarras { get; set; }
@@ -19,8 +16,10 @@ namespace InventoryPD3.Servico.Entidade
         public string GPSTimestamp { get; set; }
         public string GPSAccuracy { get; set; }
         public string Usuario { get; set; }
-        public string CaminhoImg { get; set; }   
+        public string CaminhoImg { get; set; }
         public string TimestampFoto { get; set; }
         public string urlImg { get; set; }
+        //return string.Format("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}",Cliente,Data,CodigoBarras,TimestampLeitura,GPSLatitude,GPSLongitude,GPSTimestamp,GPSAccuracy,Usuario,CaminhoImg,TimestampFoto,urlImg 
+
     }
 }

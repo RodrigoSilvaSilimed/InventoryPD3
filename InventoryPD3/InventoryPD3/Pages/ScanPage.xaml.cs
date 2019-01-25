@@ -1,27 +1,34 @@
-﻿using Firebase.Database;
+﻿using Banco;
+using Firebase.Database;
 using Firebase.Database.Query;
 using Firebase.Storage;
 using InventoryPD3.Servico.Entidade;
 using Plugin.Connectivity;
 using Plugin.Geolocator;
+using Plugin.Geolocator.Abstractions;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 
+using SQLite;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 using ZXing.Net.Mobile.Forms;
 
+
 namespace Pages
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ScanPage : ContentPage
 	{
         //variáveis globais
@@ -30,14 +37,18 @@ namespace Pages
         private string Inventario;
         private bool statusWifi=false;
         private bool statusGPS=false; //stats do GPS. Encontrado = true
-        private Plugin.Geolocator.Abstractions.Position position; //última posição obtida
+//        private Plugin.Geolocator.Abstractions.Position position; //última posição obtida
         private Control.Control Controle;
+
+        Position position = new Position();
+
+
 
         public ScanPage ()
 		{
-			InitializeComponent ();
+            InitializeComponent ();
             AtualizaInventario();
-            TimerGPSWifi();
+            //TimerGPSWifi();
             Controle = new Control.Control();
             Cliente = "999999";
             Usuario = "rsilva@silimed.com.br";
@@ -58,7 +69,8 @@ namespace Pages
              * 
              * */
         }
-       
+
+
         public async void Scan(Entidade_Leitura leitura)
         {
             string resultado="";
@@ -83,6 +95,7 @@ namespace Pages
                         leitura.GPSLatitude = position.Latitude.ToString();
                         leitura.GPSLongitude = position.Longitude.ToString();
                         leitura.GPSTimestamp = position.Timestamp.ToString();
+                        
                         TakeCam(leitura);
                     }
                     else
@@ -177,6 +190,10 @@ namespace Pages
                 leitura.urlImg = downloadUrl;
                 //lb_Resultado.Text = downloadUrl.ToString();
                 SendToFirebase(leitura);
+
+                Database database = new Database();
+                database.Cadastro(leitura);
+
             }
             else
             {
@@ -262,70 +279,70 @@ namespace Pages
 
         }
 
-        private void TimerGPSWifi()
-        {
-            Device.StartTimer(TimeSpan.FromSeconds(10), () =>
-            {
-                // Do something
-                TakeGPS();
-                WiFiStatus();
+        //private void TimerGPSWifi()
+        //{
+        //    Device.StartTimer(TimeSpan.FromSeconds(10), () =>
+        //    {
+        //        // Do something
+        //        TakeGPS();
+        //        WiFiStatus();
                 
-                return true; // True = Repeat again, False = Stop the timer
-            });
-        }
+        //        return true; // True = Repeat again, False = Stop the timer
+        //    });
+        //}
         
-        public void WiFiStatus()
-        {
-            try
-            {
-                if (CrossConnectivity.Current.IsConnected)
-                {
-                    // your logic... 
-                    img_WifiStatus.Source = "wifiOK.png";
-                    statusWifi = true;
+        //public void WiFiStatus()
+        //{
+        //    try
+        //    {
+        //        if (CrossConnectivity.Current.IsConnected)
+        //        {
+        //            // your logic... 
+        //            img_WifiStatus.Source = "wifiOK.png";
+        //            statusWifi = true;
                     
-                }
-                else
-                {
-                    // write your code if there is no Internet available
-                    img_WifiStatus.Source = "wifiNOk.png";
-                    statusWifi = false;
-                }
-            }
-            catch (Exception e)
-            {
+        //        }
+        //        else
+        //        {
+        //            // write your code if there is no Internet available
+        //            img_WifiStatus.Source = "wifiNOk.png";
+        //            statusWifi = false;
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
                 
-            }
-        }
+        //    }
+        //}
 
-        public async void TakeGPS()
-        {
-            var GPSStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Plugin.Permissions.Abstractions.Permission.Location);
-            try
-            {
+        //public async void TakeGPS()
+        //{
+        //    var GPSStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Plugin.Permissions.Abstractions.Permission.Location);
+        //    try
+        //    {
                 
-                var locator = CrossGeolocator.Current;
-                locator.DesiredAccuracy = 50;
+        //        var locator = CrossGeolocator.Current;
+        //        locator.DesiredAccuracy = 50;
                 
-                position = await locator.GetPositionAsync(TimeSpan.FromSeconds(10));
+        //        position = await locator.GetPositionAsync(TimeSpan.FromSeconds(10));
                
-                if (position != null)
-                {
-                    img_GPSStatus.Source = "GPSEncontrado.png";
-                    statusGPS = true;
-                }
-                else
-                {
-                    img_GPSStatus.Source = "GPSBuscando.png";
-                    statusGPS = false;
-                }               
+        //        if (position != null)
+        //        {
+        //            img_GPSStatus.Source = "GPSEncontrado.png";
+        //            statusGPS = true;
+        //        }
+        //        else
+        //        {
+        //            img_GPSStatus.Source = "GPSBuscando.png";
+        //            statusGPS = false;
+        //        }               
 
-            }
-            catch (Exception e)
-            {
+        //    }
+        //    catch (Exception e)
+        //    {
 
-            }
-        }
+        //    }
+        //}
 
         private void AtualizaInventario()
         {
