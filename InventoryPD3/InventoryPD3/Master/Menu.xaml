@@ -3,24 +3,38 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:paf="clr-namespace:Pages"             
              x:Class="Master.Menu">
+    
     <MasterDetailPage.Master>
-        <ContentPage Title="Menu"  BackgroundColor="#FF8257">
+        <ContentPage Title="Menu" BackgroundColor="#FF8257">
+            
+            <ContentPage.Resources>
+                <ResourceDictionary>
+                    <Style TargetType="Button">
+                        <Setter Property="FontSize" Value="20"/>
+                        <Setter Property="TextColor" Value="#7D7C7D"/>
+                        <Setter Property="BackgroundColor" Value="Transparent"/>
+
+                    </Style>
+                </ResourceDictionary>
+            </ContentPage.Resources>
+                
             <StackLayout>
-                <StackLayout BackgroundColor="#FF8257" Padding="30">
+                <StackLayout Padding="30">
                     <Image Source="user.png" HorizontalOptions="Center" VerticalOptions="Center"/>
                 </StackLayout>
                 <StackLayout Spacing="10">
-                    <Button Text="Scan" FontSize="20" TextColor="#7D7C7D"  BackgroundColor="Transparent" Clicked="GoPaginaScan"/>
-                    <Button Text="Status" FontSize="20" TextColor="#7D7C7D" BackgroundColor="Transparent" Clicked="GoPaginaStatus"/>
-                    <Button Text="Ajuda" FontSize="20" TextColor="#7D7C7D" BackgroundColor="Transparent" Clicked="GoPaginaAjuda"/>
-                    <Button Text="Sobre" FontSize="20" TextColor="#7D7C7D" BackgroundColor="Transparent" Clicked="GoPaginaSobre"/>
-                    <Button Text="Sair" FontSize="20" TextColor="#7D7C7D" BackgroundColor="Transparent" Clicked="Sair"/>
+                    <Button Text="Scan" Clicked="GoPaginaScan"/>
+                    <Button Text="Leituras" Clicked="GoPaginaLeituras"/>
+                    <Button Text="Status" Clicked="GoPaginaStatus"/>
+                    <Button Text="Ajuda" Clicked="GoPaginaAjuda"/>
+                    <Button Text="Sobre" Clicked="GoPaginaSobre"/>
+                    <Button Text="Sair" Clicked="Sair"/>
                 </StackLayout>
             </StackLayout>
         </ContentPage>
     </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
-        <NavigationPage BackgroundColor="#FF8257">
+        <NavigationPage>
             <!-- F009999 Para usar a navegação eu preciso colocar NavigationPage e adicionar a pgina dentro da estrutura x:Arguments-->
             <x:Arguments>
                 <paf:ScanPage/>

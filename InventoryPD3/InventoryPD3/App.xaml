@@ -3,6 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="InventoryPD3.App">
     <Application.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Page"> <!--Estlilo global deveria setar a cor das página do app-->
+                <Setter Property="BackgroundColor" Value="#FF257"/>
+            </Style>
+        </ResourceDictionary>
 
     </Application.Resources>
 </Application>

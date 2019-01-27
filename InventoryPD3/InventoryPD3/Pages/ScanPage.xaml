@@ -1,20 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Pages.ScanPage">
-    <ContentPage.Resources><!--seção para style-->
+             x:Class="Pages.ScanPage"
+             BackgroundColor="#FF8257">
+    <ContentPage.Resources><!--seção para style -->
         <ResourceDictionary>
-            <Style TargetType="Label">
+            
+            <Style TargetType="Label"><!--style implícito-->
                 <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
                 <Setter Property="FontSize" Value="35"/>
+            </Style>
+            <Style x:Key="lblTitulo1" TargetType="Label"><!--style explícito-->
+                <Setter Property="VerticalOptions" Value="StartAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="FontSize" Value="16"/>               
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
     
     <ContentPage.Content>
         <ScrollView>
-        <StackLayout BackgroundColor="#FF8257">
+        <StackLayout>
             
             <StackLayout Margin="30">
                 <Grid>
@@ -29,12 +36,13 @@
                         <RowDefinition Height="Auto"/>
 
                     </Grid.RowDefinitions>
-                    <Image Scale="0.5" Grid.Column="0" Grid.Row="0" VerticalOptions="Fill" HorizontalOptions="CenterAndExpand" Source="GPSBuscando.png" x:Name="img_GPSStatus"/>
-                    <Image Scale="0.5" Grid.Column="1" Grid.Row="0" VerticalOptions="Fill" HorizontalOptions="CenterAndExpand" Source="wifiNOk.png" x:Name="img_WifiStatus"/>
-                    <Label Grid.Column="0" Grid.Row="1" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" Text="GPS" FontSize="16"/>
-                    <Label Grid.Column="1" Grid.Row="1" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" Text="Internet" FontSize="16"/>
-                    <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Text="Carregando Inventário..." FontSize="20" FontAttributes="Bold" x:Name="lb_Inventario"/>
-                    <Label Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Text="100 Unidades" FontSize="30" FontAttributes="Bold" TextColor="#C9F76F" x:Name="lb_Contagem"/>
+                        <!--<Image Scale="0.5" Grid.Column="0" Grid.Row="0" VerticalOptions="Fill" HorizontalOptions="CenterAndExpand" Source="GPSBuscando.png" x:Name="img_GPSStatus"/>-->
+                        <ImageButton Scale="0.5" Grid.Column="0" Grid.Row="0" VerticalOptions="Fill" HorizontalOptions="CenterAndExpand" Source="GPSBuscando.png" x:Name="img_GPSStatus" Clicked="GPSStatus" BackgroundColor="Transparent"/>
+                        <Image Scale="0.5" Grid.Column="1" Grid.Row="0" VerticalOptions="Fill" HorizontalOptions="CenterAndExpand" Source="wifiNOk.png" x:Name="img_WifiStatus"/>
+                    <Label Grid.Column="0" Grid.Row="1" Text="GPS" Style="{StaticResource lblTitulo1}" />
+                        <Label Grid.Column="1" Grid.Row="1" Text="Internet" Style="{StaticResource lblTitulo1}" />
+                        <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Text="Carregando Inventário..." FontSize="20" FontAttributes="Bold" x:Name="lb_Inventario"/>
+                    <Label Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Text="0 Unidades" FontSize="30" FontAttributes="Bold" TextColor="#C9F76F" x:Name="lb_Contagem"/>
                     
                 </Grid>
             </StackLayout>

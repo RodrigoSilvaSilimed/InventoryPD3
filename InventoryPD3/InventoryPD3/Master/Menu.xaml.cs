@@ -22,15 +22,23 @@ namespace Master
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Menu : MasterDetailPage
     {
+        
+
         public Menu()
         {
-            InitializeComponent();
+            InitializeComponent();   
+
         }
 
         private void GoPaginaScan(object sender, EventArgs args)
         {
             Detail = new NavigationPage(new Pages.ScanPage());
-            IsPresented = false; //para esconder o menu
+            IsPresented = false; //para esconder o menu GoPaginaLeituras
+        }
+        private void GoPaginaLeituras(object sender, EventArgs args)
+        {
+            Detail = new NavigationPage(new Pages.LeiturasPage());            
+            IsPresented = false; //para esconder o menu 
         }
         private void GoPaginaStatus(object sender, EventArgs args)
         {
@@ -39,19 +47,22 @@ namespace Master
         }
         private void GoPaginaAjuda(object sender, EventArgs args)
         {
-            Detail = (new Pages.AjudaPage());           
+            Detail = new NavigationPage(new Pages.AjudaPage());           
             IsPresented = false; //para esconder o menu
         }
         private void GoPaginaSobre(object sender, EventArgs args)
         {
-            Detail = (new Pages.SobrePage());
-            IsPresented = false; //para esconder o menu
+            Detail = new NavigationPage(new Pages.SobrePage());
+            IsPresented = false; //para esconder o menu 
         }
         private void Sair(object sender, EventArgs args)
         {
-            //InventoryPD3.App.Current.Quit();
-         
+            InventoryPD3.App.Current.Quit();
+            
+
             IsPresented = false; //para esconder o menu
         }
+
+       
     }
 }

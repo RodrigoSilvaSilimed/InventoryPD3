@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Pages.LeiturasPage"
+             BackgroundColor="#FF8257">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Números de série lidos no inventário atual"/>
+            </StackLayout>
+            <Entry Placeholder="Pesquisar" TextChanged="PesquisarAction"/>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Total de SNs Lidos:" x:Name="lblTextoCount"/>
+                <Label Text="" x:Name="lblCount"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Total de SNs à Sincronizar:" x:Name="lblTextoCountSync"/>
+                <Label Text="" x:Name="lblCountSync"/>
+            </StackLayout>
+
+            <ListView x:Name="ListaLeituras">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <!--se eu esquecer, a lista vai aparecer com dois registros mas sem exibir as informações-->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="100"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <StackLayout Grid.Column="0">
+                                    <Label Text="{Binding CodigoBarras}" FontAttributes="Bold"/>
+                                </StackLayout>
+                                <StackLayout Grid.Column="1" Orientation="Horizontal">
+                                    <Label Text="+Excluir">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="ExcluirAction" CommandParameter="{Binding .}"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

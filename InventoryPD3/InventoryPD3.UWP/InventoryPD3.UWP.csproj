@@ -92,6 +92,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Banco\Caminho.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -131,8 +132,10 @@
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="barcodefoldedicon.png" />
+    <Content Include="googleloginbutton.png" />
     <Content Include="GPSBuscando.png" />
     <Content Include="GPSEncontrado.png" />
+    <Content Include="LogoSilimed.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="user.png" />
     <Content Include="wifiNOk.png" />
@@ -157,6 +160,9 @@
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="sqlite-net-pcl">
+      <Version>1.5.231</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugin.Connectivity">
       <Version>3.2.0</Version>
