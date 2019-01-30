@@ -62,18 +62,20 @@ namespace Pages
 
         private void GPSStatus(object sender, EventArgs arg)
         {
-           
-            if (InventoryPD3.App._position==null)
-            {
-                DisplayAlert("", "Aguardando sinal GPS.", "OK");
-            }
-            else
-            {
-                if (InventoryPD3.App._position != null)
-                {
-                    DisplayAlert("Status do GPS", "Latitude: " + string.Format("{0:0.000}", App._position.Latitude) + " Longitude: " + string.Format("{0:0.000}", App._position.Longitude), "OK");
-                }
-            }
+            /*
+             if (InventoryPD3.App._position==null)
+             {
+                 DisplayAlert("", "Aguardando sinal GPS.", "OK");
+             }
+             else
+             {
+                 if (InventoryPD3.App._position != null)
+                 {
+                     DisplayAlert("Status do GPS", "Latitude: " + string.Format("{0:0.000}", App._position.Latitude) + " Longitude: " + string.Format("{0:0.000}", App._position.Longitude), "OK");
+                 }
+             }
+             */
+            var action = DisplayActionSheet("ActionSheet: Send to?", "Cancel", null, "Email", "Twitter", "Facebook");
 
         }
 
@@ -311,5 +313,6 @@ namespace Pages
 
         }
 
+        
     }
 }
