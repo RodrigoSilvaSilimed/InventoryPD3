@@ -25,7 +25,7 @@
 	<uses-permission android:name="android.permission.WRITE_SETTINGS" />
 	<uses-permission android:name="android.permission.INTERNAL_SYSTEM_WINDOW" />
 	<uses-permission android:name="android.permission.MANAGE_DOCUMENTS" />
-	<application android:label="InventoryPD3">
+	<application android:label="InventoryPD3" android:icon="@drawable/LogoSilimed">
 		<provider android:name="android.support.v4.content.FileProvider" android:authorities="${applicationId}.fileprovider" android:exported="false" android:grantUriPermissions="true">
 			<meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"></meta-data>
 		</provider>

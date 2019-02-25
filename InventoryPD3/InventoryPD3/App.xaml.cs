@@ -43,8 +43,9 @@ namespace InventoryPD3
 
             // MainPage = new MainPage() https://forum.casadocodigo.com.br/t/resolvido-xamarin-forms-erro-com-pushasync/468/9
             //MainPage = new NavigationPage(new MainPage());
-            MainPage = (new Master.Menu());
+            //MainPage = (new Master.Menu()); // ultimo que usei em 06/02
             //MainPage = (new Pages.LoginPage());
+            App.Current.MainPage = new Pages.LoginFacebookPage();
         }
 
         protected override void OnStart()
