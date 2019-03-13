@@ -62,6 +62,9 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.1</Version>
     </PackageReference>
+    <PackageReference Include="PCLCrypto">
+      <Version>2.0.147</Version>
+    </PackageReference>
     <PackageReference Include="sqlite-net-pcl">
       <Version>1.5.231</Version>
     </PackageReference>
@@ -74,14 +77,22 @@
     <PackageReference Include="Xam.Plugin.Media">
       <Version>4.0.1.5</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.Annotations">
+      <Version>28.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.Compat">
+      <Version>28.0.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.v7.CardView">
+      <Version>28.0.0</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Auth">
-      <Version>1.5.0.3</Version>
+      <Version>1.6.0.4</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0" />
     <PackageReference Include="Xamarin.Android.Support.v4" Version="28.0.0" />
-    <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="28.0.0" />
     <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="28.0.0" />
     <PackageReference Include="ZXing.Net.Core">
       <Version>0.2.7</Version>
@@ -95,6 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Banco\Caminho.cs" />
+    <Compile Include="CustomUrlSchemeInterceptorActivity.cs" />
     <Compile Include="LoginFacebookRenderer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />

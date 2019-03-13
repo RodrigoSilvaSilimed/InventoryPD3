@@ -27,6 +27,11 @@ namespace InventoryPD3.Servico.DAL
             return _conexao.Table<Entidade_Leitura>().ToList();
         }
 
+        public List<Entidade_Leitura> Consultar(string inventario)
+        {
+            return _conexao.Table<Entidade_Leitura>().Where(a => a.Data == inventario).ToList();
+        }
+
         public List<Entidade_Leitura> ConsultarLeiturasParaSincronizar()
         {
             return _conexao.Table<Entidade_Leitura>().Where(a => a.Synced == false).ToList();

@@ -241,6 +241,7 @@ namespace InventoryPD3
                 lb_Resultado.Text = lb_Resultado.Text + $"{dino.Key} is {dino.Object.Height}m high.";
             }*/
 
+            /*
             Dinosaur meudino = new Dinosaur();
 
             meudino.nome = "Rodrigo";
@@ -257,7 +258,7 @@ namespace InventoryPD3
               .Child("dinosaurs")
               .Child("t-rex")
               .PutAsync(meudino);
-
+              */
             // note that there is another overload for the PostAsync method which delegates the new key generation to the firebase server
             //Console.WriteLine($"Key for the new dinosaur: {dino.Key}");
 

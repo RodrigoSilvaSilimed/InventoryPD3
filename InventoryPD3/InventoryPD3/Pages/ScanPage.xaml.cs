@@ -61,8 +61,7 @@ namespace Pages
         }
 
         private void GPSStatus(object sender, EventArgs arg)
-        {
-            /*
+        {            
              if (InventoryPD3.App._position==null)
              {
                  DisplayAlert("", "Aguardando sinal GPS.", "OK");
@@ -73,9 +72,7 @@ namespace Pages
                  {
                      DisplayAlert("Status do GPS", "Latitude: " + string.Format("{0:0.000}", App._position.Latitude) + " Longitude: " + string.Format("{0:0.000}", App._position.Longitude), "OK");
                  }
-             }
-             */
-            var action = DisplayActionSheet("ActionSheet: Send to?", "Cancel", null, "Email", "Twitter", "Facebook");
+             }           
 
         }
 
@@ -99,6 +96,22 @@ namespace Pages
 
                         if ((Controle.ValidaBarcodeSN(result.Text)))
                         {
+                            leitura.CodigoBarras = result.Text;
+                            leitura.TimestampLeitura = DateTime.Now.ToString();
+                            leitura.GPSAccuracy = InventoryPD3.App._position.Accuracy.ToString();
+                            leitura.GPSLatitude = InventoryPD3.App._position.Latitude.ToString();
+                            leitura.GPSLongitude = InventoryPD3.App._position.Longitude.ToString();
+                            leitura.GPSTimestamp = InventoryPD3.App._position.Timestamp.ToString();
+                            leitura.Synced = false;
+                            leitura.CaminhoImg = "N/A";
+                            leitura.urlImg = "N/A";
+                            leitura.Data = "N/A";
+                            leitura.TimestampFoto = DateTime.Now.ToString();
+                            DisplayAlert("Código Lido!", "O SN " + result.Text + " foi lido com sucesso!", "OK");
+                            SendToSQLite(leitura);
+                            
+
+                            /*
                             if (InventoryPD3.App._position != null)
                             {
                                 leitura.CodigoBarras = result.Text;
@@ -121,7 +134,7 @@ namespace Pages
                             {
                                 DisplayAlert("Status GPS", "Não há sinal informações de localização", "OK");
                             }
-
+                            */
                         }
                         else
                         {
@@ -193,10 +206,7 @@ namespace Pages
 
                 leitura.CaminhoImg = path;
                 
-                await DisplayAlert("Localização do Arquivo", file.Path, "OK");
-
-                
-                
+                await DisplayAlert("Localização do Arquivo", file.Path, "OK");               
                 
                 //leitura.urlImg = downloadUrl;
                 //lb_Resultado.Text = downloadUrl.ToString();
@@ -294,13 +304,13 @@ namespace Pages
         private void ConsultarLeituras()
         {
             DAL_Database database = new DAL_Database();
-            var Lista = database.Consultar();           
+            var Lista = database.Consultar(lb_Inventario.Text);           
 
             //Lista = database.Pesquisa()
             lb_Contagem.Text = Lista.Count().ToString()+ " Unidades";
         }
 
-        public async void TesteFirebase()
+        /*public async void TesteFirebase()
         {
             var firebase = new FirebaseClient("https://inventorypd3.firebaseio.com/");
             Dinosaur teste = new Dinosaur();
@@ -311,7 +321,7 @@ namespace Pages
                   .Child("inventorypd3")
                   .PostAsync(teste);
 
-        }
+        }*/
 
         
     }

@@ -34,6 +34,10 @@
       <DependentUpon>LoginFacebookPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\LoginGooglePage.xaml.cs">
+      <DependentUpon>LoginGooglePage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -50,16 +54,20 @@
       <DependentUpon>StatusPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Servico\BLL\AuthenticationState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Servico\BLL\BLL_CEP.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Servico\BLL\BLL_InventoryPD3.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Servico\BLL\Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Servico\BLL\IFirebaseAuthenticator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Servico\BLL\User.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Servico\DAL\DAL_Database.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Servico\DAL\DAL_Firebase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Servico\DAL\ICaminho.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Servico\Entidade\Dinosaur.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Servico\Entidade\Entidade_CEP.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Servico\Entidade\Entidade_GPS.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Servico\Entidade\Entidade_Leitura.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Servico\Entidade\Entidade_Leitura_Sync.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Servico\Entidade\Entidade_Login.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Servico\Entidade\Entidade_Usuario.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +114,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\LoginFacebookPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\LoginGooglePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "65106222870",
+    "firebase_url": "https://inventorypd3.firebaseio.com",
+    "project_id": "inventorypd3",
+    "storage_bucket": "inventorypd3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:65106222870:android:f382d5c4e2697a98",
+        "android_client_info": {
+          "package_name": "br.com.silimed.InventoryPD3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "65106222870-o13c3p37sr83if2hi7tjctgbvjitkgfg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.silimed.InventoryPD3",
+            "certificate_hash": "1ad567f592fb75dbcd00d0afd940bb10525ae3cd"
+          }
+        },
+        {
+          "client_id": "65106222870-2fjre9q0g7fqr1r7s6vc9s569883eq7a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLw912epba431Wzq6KFM12PBdE5gLWadE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "65106222870-2fjre9q0g7fqr1r7s6vc9s569883eq7a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

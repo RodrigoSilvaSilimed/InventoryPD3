@@ -15,20 +15,30 @@
                         <Setter Property="BackgroundColor" Value="Transparent"/>
 
                     </Style>
+                    <Style TargetType="Label">
+                        <Setter Property="FontSize" Value="20"/>
+                        <Setter Property="TextColor" Value="#7D7C7D"/>
+                        <Setter Property="BackgroundColor" Value="Transparent"/>
+
+                    </Style>
                 </ResourceDictionary>
             </ContentPage.Resources>
                 
             <StackLayout>
                 <StackLayout Padding="30">
-                    <Image Source="user.png" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Image Source="user.png" x:Name="img_User" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Label Text="Usuário" x:Name="NomeUsuario"/>
+                    <Label Text="E-Mail" x:Name="email"/>
                 </StackLayout>
                 <StackLayout Spacing="10">
                     <Button Text="Scan" Clicked="GoPaginaScan"/>
                     <Button Text="Leituras" Clicked="GoPaginaLeituras"/>
+                   <!-- 
                     <Button Text="Status" Clicked="GoPaginaStatus"/>
                     <Button Text="Ajuda" Clicked="GoPaginaAjuda"/>
                     <Button Text="Sobre" Clicked="GoPaginaSobre"/>
-                    <Button Text="Sair" Clicked="Sair"/>
+                    -->
+                    <Button Text="Sair" Clicked="GoSair"/>
                 </StackLayout>
             </StackLayout>
         </ContentPage>

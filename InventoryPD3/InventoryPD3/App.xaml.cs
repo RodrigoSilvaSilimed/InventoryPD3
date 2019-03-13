@@ -43,9 +43,11 @@ namespace InventoryPD3
 
             // MainPage = new MainPage() https://forum.casadocodigo.com.br/t/resolvido-xamarin-forms-erro-com-pushasync/468/9
             //MainPage = new NavigationPage(new MainPage());
-            //MainPage = (new Master.Menu()); // ultimo que usei em 06/02
+            MainPage = (new Master.Menu()); // ultimo que usei em 06/02
             //MainPage = (new Pages.LoginPage());
-            App.Current.MainPage = new Pages.LoginFacebookPage();
+            //App.Current.MainPage = new Pages.LoginFacebookPage();
+            
+            //App.Current.MainPage = new Pages.LoginGooglePage();
         }
 
         protected override void OnStart()
@@ -62,6 +64,16 @@ namespace InventoryPD3
         {
             // Handle when your app resumes
         }
+
+        public static void NavegarParaInciar(Entidade_Login Login)
+        {
+            App.Current.MainPage = (new Master.Menu(Login));
+        }
+        public static void NavegarParaInciar(InventoryPD3.Servico.BLL.User Login)
+        {
+            App.Current.MainPage = (new Master.Menu(Login));
+        }
+
         private async void ChecarPermissões()
         {
             try
@@ -72,7 +84,7 @@ namespace InventoryPD3
             }
             catch (Exception e)
             {
-
+                
             }
 
         }
@@ -151,11 +163,13 @@ namespace InventoryPD3
                             //SendToFirebase(leitura);
                             await firebase.SendToFirebase(leitura);
                             var _leiturasFirebase = await firebase.BuscarLeitura(leitura);
+
                             if (_leiturasFirebase.Count > 0)
                             {
                                 leitura.Synced = true;
                                 database.Atualizacao(leitura);
                             }
+                            
                             /*foreach (var Lleituras in _leiturasFirebase)
                             {
                                 //leitura.Synced = true;

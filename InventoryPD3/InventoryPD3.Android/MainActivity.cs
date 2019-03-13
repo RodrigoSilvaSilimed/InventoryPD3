@@ -9,12 +9,16 @@ using Android.OS;
 using Plugin.Media;
 using Plugin.Permissions;
 using Plugin.CurrentActivity;
+using InventoryPD3.Servico.BLL;
 
 namespace InventoryPD3.Droid
 {
     [Activity(Label = "InventoryPD3", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+        // OAuth - Need to be static because we need to access it in GoogleAuthInterceptor for continuation
+        //public static GoogleAuthenticator Auth;
+        
         protected  override void OnCreate(Bundle savedInstanceState) //precisei transdformar o método em async por causa do await da câmera
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -24,8 +28,16 @@ namespace InventoryPD3.Droid
             //await CrossMedia.Current.Initialize();//Adicionei por causa da Câmera
             CrossCurrentActivity.Current.Init(this, savedInstanceState); // Sem essa linha o app não pede permissão erro: "Plugin.Media.Abstractions.MediaPermissionException: Camera permission(s) are required."
 
+           
+
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
+            global::Xamarin.Auth.Presenters.XamarinAndroid.AuthenticationConfiguration.Init(this, savedInstanceState);
+
+            //Auth = new GoogleAuthenticator(Configuration.ClientId, Configuration.Scope, Configuration.RedirectUrl);
+
             LoadApplication(new App());
+
         }
 
        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults) //https://julianocustodio.com/2017/11/03/scanner/
@@ -34,8 +46,6 @@ namespace InventoryPD3.Droid
             Plugin.Permissions.PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);// permissão da Câmera
           
         }
-
-       
 
     }
 }
