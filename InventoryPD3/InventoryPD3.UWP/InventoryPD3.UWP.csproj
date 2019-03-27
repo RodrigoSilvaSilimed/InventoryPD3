@@ -137,6 +137,7 @@
     <Content Include="GPSBuscando.png" />
     <Content Include="GPSEncontrado.png" />
     <Content Include="LogoSilimed.png" />
+    <Content Include="Next.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="user.png" />
     <Content Include="wifiNOk.png" />
@@ -181,7 +182,6 @@
       <Version>1.6.0.4</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
-    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.9" />
     <PackageReference Include="ZXing.Net.Core">
       <Version>0.2.7</Version>
     </PackageReference>

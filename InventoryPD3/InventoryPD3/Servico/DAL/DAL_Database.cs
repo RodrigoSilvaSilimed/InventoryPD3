@@ -20,16 +20,16 @@ namespace InventoryPD3.Servico.DAL
 
             _conexao = new SQLiteConnection(caminho);
             _conexao.CreateTable<Entidade_Leitura>();
+        
+            //Query("delete Entidade_Leitura ");
         }    
 
-        public List<Entidade_Leitura> Consultar()
-        {
-            return _conexao.Table<Entidade_Leitura>().ToList();
-        }
+       
 
-        public List<Entidade_Leitura> Consultar(string inventario)
+        public List<Entidade_Leitura> Consultar(string inventario, string cliente)
         {
-            return _conexao.Table<Entidade_Leitura>().Where(a => a.Data == inventario).ToList();
+            //return _conexao.Table<Entidade_Leitura>().ToList();
+            return _conexao.Table<Entidade_Leitura>().Where(a => (a.Data == inventario && a.Cliente==cliente)).ToList();
         }
 
         public List<Entidade_Leitura> ConsultarLeiturasParaSincronizar()
@@ -37,14 +37,14 @@ namespace InventoryPD3.Servico.DAL
             return _conexao.Table<Entidade_Leitura>().Where(a => a.Synced == false).ToList();
         }
 
-        public List<Entidade_Leitura> Pesquisa(string CodigoBarras)
+        public List<Entidade_Leitura> Pesquisa(string CodigoBarras, string inventario, string cliente)
         {
-            return _conexao.Table<Entidade_Leitura>().Where(a => a.CodigoBarras == CodigoBarras).ToList();
+            return _conexao.Table<Entidade_Leitura>().Where(a => (a.Data == inventario && a.Cliente == cliente && a.Barcode == CodigoBarras)).ToList();
         }
 
         public Entidade_Leitura ObterVagaPorCodigoBarras(string CodigoBarras)
         {
-            return _conexao.Table<Entidade_Leitura>().Where(a => a.CodigoBarras == CodigoBarras).FirstOrDefault();
+            return _conexao.Table<Entidade_Leitura>().Where(a => (a.Barcode == CodigoBarras)).FirstOrDefault();
         }
 
         public void Cadastro(Entidade_Leitura leitura)
@@ -60,6 +60,17 @@ namespace InventoryPD3.Servico.DAL
         public void Exclusao(Entidade_Leitura leitura)
         {
             _conexao.Delete(leitura);
+        }
+
+        public void Query(string query)
+        {
+            
+            var returno = _conexao.Query<Entidade_Leitura>(query);
+        }
+
+        public void ApagarTabelaLeitura()
+        {
+            _conexao.DropTable<Entidade_Leitura>();
         }
     }
 }

@@ -39,10 +39,15 @@ namespace Master
         }
         public Menu(InventoryPD3.Servico.BLL.User Login)
         {
+            InventoryPD3.App._Usuario = Login;
+
             InitializeComponent();
+            
+
             NomeUsuario.Text = Login.GivenName +" "+ Login.FamilyName;
             email.Text = Login.Email;
             img_User.Source = Login.Picture;
+            _cliente.Text = "Cliente " + Login.Cliente;
 
             //var webImage = new Image { Source = ImageSource.FromUri(new Uri("https://xamarin.com/content/images/pages/forms/example-app.png")) };
 

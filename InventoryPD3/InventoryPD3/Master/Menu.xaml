@@ -29,6 +29,7 @@
                     <Image Source="user.png" x:Name="img_User" HorizontalOptions="Center" VerticalOptions="Center"/>
                     <Label Text="Usuário" x:Name="NomeUsuario"/>
                     <Label Text="E-Mail" x:Name="email"/>
+                    <Label Text="Cliente" x:Name="_cliente"/>
                 </StackLayout>
                 <StackLayout Spacing="10">
                     <Button Text="Scan" Clicked="GoPaginaScan"/>

@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using InventoryPD3.Servico.DAL;
 using InventoryPD3.Servico.Entidade;
+using InventoryPD3;
 
 namespace Pages
 {
@@ -25,7 +26,7 @@ namespace Pages
         private void ConsultarLeituras()
         {
             DAL_Database database = new DAL_Database();
-            Lista = database.Consultar();
+            Lista = database.Consultar((DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString()), App._Usuario.Cliente);
 
             ListaLeituras.ItemsSource = Lista;
             lblCount.Text = Lista.Count.ToString();
@@ -36,7 +37,7 @@ namespace Pages
 
         private void PesquisarAction(object sender, TextChangedEventArgs args)
         {
-            ListaLeituras.ItemsSource = Lista.Where(a => a.CodigoBarras.Contains(args.NewTextValue)).ToList(); // args.NewTextValue captura a última informação digitada. onde a é igual a.nomevaga
+            ListaLeituras.ItemsSource = Lista.Where(a => a.Barcode.Contains(args.NewTextValue)).ToList(); // args.NewTextValue captura a última informação digitada. onde a é igual a.nomevaga
         }
 
         private async void ExcluirAction(object sender, EventArgs args)
@@ -45,7 +46,7 @@ namespace Pages
 
             if (x)
             {
-                Label lblExcluir = (Label)sender; //Instanicei uma label para receber a label da interface (XAML). Desejo com isso pegar o Binding do Command Parameter que está dentro do GetureRecognizer da Label
+                Label lblExcluir = (Label)sender; //Instanciei uma label para receber a label da interface (XAML). Desejo com isso pegar o Binding do Command Parameter que está dentro do GetureRecognizer da Label
                                                   //Vagas vaga = ((TapGestureRecognizer)lblDetalhe.GestureRecognizers[0]).CommandParameter as Vagas;//Gesturerecognizer é uma lista. Vou acessar o primeiro elemento da lista que é o tap. Faço uma conversão
 
                 TapGestureRecognizer tapGest = (TapGestureRecognizer)lblExcluir.GestureRecognizers[0]; //0 é o campo da vaga

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Pages.EntrarClientePage"
+             BackgroundColor="#FF8257">
+    <ContentPage.Resources><!--seção para style -->
+        <ResourceDictionary>
+            
+            <Style TargetType="Label"><!--style implícito-->
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="TextColor" Value="WhiteSmoke"/>
+               
+            </Style>
+
+            <Style TargetType="Entry">
+                <!--style implícito-->
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="WidthRequest" Value="200"/>
+                <Setter Property="TextColor" Value="WhiteSmoke"/>
+            </Style>
+
+            <Style TargetType="ImageButton">
+                <!--style implícito-->
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>                
+                <Setter Property="MinimumWidthRequest" Value="250"/>            
+
+            </Style>
+        </ResourceDictionary>
+        
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Padding="80" Margin="0">
+            <Image Source="user.png" x:Name="img_User" HorizontalOptions="Center" VerticalOptions="Center" />
+            <Label Text="Usuário" x:Name="NomeUsuario"/>
+            <Label Text="E-Mail" x:Name="email"/>
+            <Entry Placeholder="Digite o Código de Cliente" PlaceholderColor="LightGray" x:Name="entry_cod_cliente" Focused="entry_cod_cliente_focused" TextChanged="entry_cod_cliente_TextChanged" MaxLength="6" ReturnType="Next" Completed="OnEnterPressed"/>
+            <ImageButton Source="Next.png" WidthRequest="50" HeightRequest="50"  x:Name="btn_Img_Avancar" Clicked="btn_Img_Avancar_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

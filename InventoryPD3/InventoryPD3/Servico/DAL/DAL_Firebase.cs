@@ -20,10 +20,12 @@ namespace InventoryPD3.Servico.DAL
         {
             var firebase = new FirebaseClient("https://inventorypd3.firebaseio.com/");
             var leituras = await firebase
-              .Child(leitura.Cliente)
+              .Child("Appv09Bucket")
+              .Child("Inventario")
               .Child(DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString("00"))
+              .Child(leitura.Cliente)              
               .OrderByKey()
-              .StartAt(leitura.CodigoBarras)
+              .StartAt(leitura.Barcode)
               .LimitToFirst(1)
               .OnceAsync<Entidade_Leitura>();
             return leituras;
@@ -53,11 +55,13 @@ namespace InventoryPD3.Servico.DAL
 
             //var cliente = 
             await firebase
-            .Child(leitura.Cliente)
-            .Child(DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString("00"))
-            .Child(leitura.CodigoBarras)
-            //.PostAsync(leitura);//Firebase cria a chave
-            .PutAsync(leitura);// Eu crio a chave
+                .Child("Appv09Bucket")
+                .Child("Inventario")
+                .Child(DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString("00"))
+                .Child(leitura.Cliente)
+                .Child(leitura.Barcode)
+                //.PostAsync(leitura);//Firebase cria a chave
+                .PutAsync(leitura);// Eu crio a chave
 
             // note that there is another overload for the PostAsync method which delegates the new key generation to the firebase server
             //Console.WriteLine($"Key for the new dinosaur: {dino.Key}");
@@ -89,7 +93,7 @@ namespace InventoryPD3.Servico.DAL
             var task = new FirebaseStorage("inventorypd3.appspot.com")
                    .Child(leitura.Cliente)
                    .Child(DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString("00"))
-                   .Child(leitura.CodigoBarras + ".jpg")
+                   .Child(leitura.Barcode + ".jpg")
                    .PutAsync(stream2);
 
             file.Dispose();

@@ -10,9 +10,10 @@ using System.IO;
 using InventoryPD3.iOS.Banco;
 using InventoryPD3.Servico.DAL;
 
+[assembly:Dependency(typeof(Caminho))]
 namespace InventoryPD3.iOS.Banco
 {
-    class Caminho : ICaminho
+    public class Caminho : ICaminho
     {
         public string GetCaminho(string NomeArquivoBanco)
         {

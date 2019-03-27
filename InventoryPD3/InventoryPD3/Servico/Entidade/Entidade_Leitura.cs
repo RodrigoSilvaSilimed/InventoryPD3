@@ -11,7 +11,23 @@ namespace InventoryPD3.Servico.Entidade
     {
         //[PrimaryKey, AutoIncrement]//notation
         [PrimaryKey]//notation
-        public string CodigoBarras { get; set; }
+        public string Barcode { get; set; }
+        //public int Id { get; set; }
+        public string Cliente { get; set; }
+        public string Data { get; set; }          
+        public string Latitude { get; set; }
+        public string Longitude { get; set; }
+        public string Timestamp { get; set; }
+        public string Usuario { get; set; }
+        public string GPSTimestamp { get; set; }
+        public string GPSAccuracy { get; set; }
+        public bool   Synced { get; set; }
+        public string CaminhoImg { get; set; }   
+        public string TimestampFoto { get; set; }
+        public string urlImg { get; set; }
+
+        /*
+         * public string CodigoBarras { get; set; }
         //public int Id { get; set; }
         public string Cliente { get; set; }
         public string Data { get; set; }        
@@ -25,5 +41,6 @@ namespace InventoryPD3.Servico.Entidade
         public string CaminhoImg { get; set; }   
         public string TimestampFoto { get; set; }
         public string urlImg { get; set; }
+        */
     }
 }

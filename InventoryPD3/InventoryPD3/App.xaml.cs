@@ -7,6 +7,7 @@ using Xamarin.Forms.Xaml;
 using Plugin.Connectivity;
 using InventoryPD3.Servico.DAL;
 using InventoryPD3.Servico.Entidade;
+using InventoryPD3;
 using Firebase.Database;
 using Firebase.Database.Query;
 using System.Threading.Tasks;
@@ -22,6 +23,7 @@ namespace InventoryPD3
         public static bool _statusWifi { get; set; } = false;
         public static Plugin.Geolocator.Abstractions.Position _position { get; set; } //última posição obtida
         public static string _inventario { get; set; } = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString("00");
+        public static Servico.BLL.User _Usuario { get; set; } = new Servico.BLL.User();
 
         //GPS
         private const int TempoAtualizacaoGPSWifiInicial = 2;//Intervalo inicial, mais curto para inicar logo o uso do App
@@ -33,21 +35,24 @@ namespace InventoryPD3
 
 
         private int _TempoTimer { get; set; } = TempoAtualizacaoGPSWifiInicial; //tempo em segundos em que o timer procura informações GPS.
+
+       
+
         public App()
         {
             InitializeComponent();
-
             ChecarPermissões();
             TimerGPSWifi();
             TimerSync();
 
             // MainPage = new MainPage() https://forum.casadocodigo.com.br/t/resolvido-xamarin-forms-erro-com-pushasync/468/9
             //MainPage = new NavigationPage(new MainPage());
-            MainPage = (new Master.Menu()); // ultimo que usei em 06/02
-            //MainPage = (new Pages.LoginPage());
-            //App.Current.MainPage = new Pages.LoginFacebookPage();
-            
-            //App.Current.MainPage = new Pages.LoginGooglePage();
+           // MainPage = (new Master.Menu()); // ultimo que usei em 06/02
+                                            //MainPage = (new Pages.LoginPage());
+                                            //App.Current.MainPage = new Pages.LoginFacebookPage(); //Login Face
+
+            App.Current.MainPage = new Pages.LoginGooglePage(); //Login Google
+            //MainPage = (new Pages.EntrarClientePage());
         }
 
         protected override void OnStart()
@@ -73,7 +78,10 @@ namespace InventoryPD3
         {
             App.Current.MainPage = (new Master.Menu(Login));
         }
-
+        public static void NavegarParaEntrarCliente(InventoryPD3.Servico.BLL.User Login)
+        {
+            App.Current.MainPage = (new Pages.EntrarClientePage(Login));
+        }
         private async void ChecarPermissões()
         {
             try

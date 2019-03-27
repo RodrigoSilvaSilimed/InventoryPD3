@@ -34,5 +34,7 @@ namespace InventoryPD3.Servico.BLL
 
         [JsonProperty("gender")]
         public string Gender { get; set; }
+
+        public string Cliente { get; set; }
     }
 }

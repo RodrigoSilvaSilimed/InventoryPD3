@@ -21,15 +21,13 @@ using InventoryPD3;
 using Firebase.Database;
 using Firebase.Database.Query;
 
+
 namespace Pages
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ScanPage : ContentPage
 	{
-        //variáveis globais
-        private string Cliente;
-        private string Usuario;
-       
+              
         private Control.Control Controle;
 
         public ScanPage ()
@@ -40,16 +38,15 @@ namespace Pages
             TimerGPSWifi();
             Controle = new Control.Control();
             //Entidade_Usuario
-            Cliente = "999999";
-            Usuario = "rsilva@silimed.com.br";
+           
             
         }
 
         private void LerBarcode(object sender, EventArgs arg)
         {
             Entidade_Leitura leitura = new Entidade_Leitura();
-            leitura.Cliente = Cliente;
-            leitura.Usuario = Usuario;
+            leitura.Cliente = App._Usuario.Cliente;
+            leitura.Usuario = App._Usuario.Email;
             Scan(leitura);
             /*
              * Como os métodos de ler códigos de barras e tirar fotos são assíncronos, a chamada da foto está dentro do método de leitura de código de barras
@@ -94,47 +91,48 @@ namespace Pages
                     Device.BeginInvokeOnMainThread(() =>
                     {
 
-                        if ((Controle.ValidaBarcodeSN(result.Text)))
+                        if ((Controle.ValidaBarcodeSN(result.Text.Trim())))
                         {
-                            leitura.CodigoBarras = result.Text;
-                            leitura.TimestampLeitura = DateTime.Now.ToString();
-                            leitura.GPSAccuracy = InventoryPD3.App._position.Accuracy.ToString();
-                            leitura.GPSLatitude = InventoryPD3.App._position.Latitude.ToString();
-                            leitura.GPSLongitude = InventoryPD3.App._position.Longitude.ToString();
-                            leitura.GPSTimestamp = InventoryPD3.App._position.Timestamp.ToString();
-                            leitura.Synced = false;
-                            leitura.CaminhoImg = "N/A";
-                            leitura.urlImg = "N/A";
-                            leitura.Data = "N/A";
-                            leitura.TimestampFoto = DateTime.Now.ToString();
-                            DisplayAlert("Código Lido!", "O SN " + result.Text + " foi lido com sucesso!", "OK");
-                            SendToSQLite(leitura);
-                            
-
-                            /*
+                           
                             if (InventoryPD3.App._position != null)
                             {
-                                leitura.CodigoBarras = result.Text;
-                                leitura.TimestampLeitura = DateTime.Now.ToString();
+                                leitura.Barcode = result.Text;
+                                leitura.Timestamp = DateTime.Now.ToString();
                                 leitura.GPSAccuracy = InventoryPD3.App._position.Accuracy.ToString();
-                                leitura.GPSLatitude = InventoryPD3.App._position.Latitude.ToString();
-                                leitura.GPSLongitude = InventoryPD3.App._position.Longitude.ToString();
+                                leitura.Latitude = InventoryPD3.App._position.Latitude.ToString();
+                                leitura.Longitude = InventoryPD3.App._position.Longitude.ToString();
                                 leitura.GPSTimestamp = InventoryPD3.App._position.Timestamp.ToString();
                                 leitura.Synced = false;
-                                leitura.CaminhoImg = "N/A";
-                                leitura.urlImg = "N/A";
-                                leitura.Data = "N/A";
-                                leitura.TimestampFoto = DateTime.Now.ToString();
+                                //leitura.CaminhoImg = "N/A";
+                                //leitura.urlImg = "N/A";
+                                leitura.Data = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString();
+                                //leitura.TimestampFoto = DateTime.Now.ToString();
                                 //TakeCam(leitura); comentado pois desde 25/01 decidiu-se que não vamos mais armazenar a imagem do produto
-                                DisplayAlert("Código Lido!", "O SN " + result.Text + " foi lido com sucesso!", "OK");
+                                //DisplayAlert("Código Lido!", "O SN " + result.Text + " foi lido com sucesso!", "OK");
+                                scanpage.Title = "Código Lido: " + result.Text;
                                 SendToSQLite(leitura);
                                 //SendToFirebase(leitura);
                             }
                             else
                             {
-                                DisplayAlert("Status GPS", "Não há sinal informações de localização", "OK");
+                                //DisplayAlert("Status GPS", "Não há sinal informações de localização", "OK");
+                                leitura.Barcode = result.Text;
+                                leitura.Timestamp = DateTime.Now.ToString();
+                                leitura.GPSAccuracy = "0";
+                                leitura.Latitude = "0";
+                                leitura.Longitude = "0";
+                                leitura.GPSTimestamp = "0";
+                                leitura.Synced = false;
+                                //leitura.CaminhoImg = "N/A";
+                                //leitura.urlImg = "N/A";
+                                leitura.Data = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString();
+                                //TakeCam(leitura); comentado pois desde 25/01 decidiu-se que não vamos mais armazenar a imagem do produto
+                                //leitura.TimestampFoto = DateTime.Now.ToString();
+                                //DisplayAlert("Código Lido!", "O SN " + result.Text + " foi lido com sucesso!", "OK");
+                                scanpage.Title = "Ultimo Código Lido: " + result.Text;
+                                SendToSQLite(leitura);
                             }
-                            */
+                            
                         }
                         else
                         {
@@ -182,7 +180,7 @@ namespace Pages
                 {
                     SaveToAlbum = true,
                     //Directory = "Pictures",
-                    Name = $"{leitura.CodigoBarras}.jpg",
+                    Name = $"{leitura.Barcode}.jpg",
                     CompressionQuality = 92, //0 é o mais comprimido. 92 é o recomendado
                     CustomPhotoSize = 50,//50% do original
                     //PhotoSize = PhotoSize.MaxWidthHeight,
@@ -224,7 +222,7 @@ namespace Pages
         {
             //Salvar informações no Banco
             DAL_Database database = new DAL_Database();
-            var _leitura = database.ObterVagaPorCodigoBarras(leitura.CodigoBarras);
+            var _leitura = database.ObterVagaPorCodigoBarras(leitura.Barcode);
 
             if (_leitura==null)
             {
@@ -304,7 +302,7 @@ namespace Pages
         private void ConsultarLeituras()
         {
             DAL_Database database = new DAL_Database();
-            var Lista = database.Consultar(lb_Inventario.Text);           
+            var Lista = database.Consultar((DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString()), App._Usuario.Cliente);           
 
             //Lista = database.Pesquisa()
             lb_Contagem.Text = Lista.Count().ToString()+ " Unidades";

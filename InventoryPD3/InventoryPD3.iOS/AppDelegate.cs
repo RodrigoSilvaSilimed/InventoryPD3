@@ -26,6 +26,7 @@ namespace InventoryPD3.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             global::Xamarin.Auth.Presenters.XamarinIOS.AuthenticationConfiguration.Init();
+            global::ZXing.Net.Mobile.Forms.iOS.Platform.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

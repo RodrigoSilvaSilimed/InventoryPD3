@@ -87,7 +87,8 @@ namespace Pages
                     // The users email address will be used to identify data in SimpleDB
                     string userJson = await response.GetResponseTextAsync();
                     user = JsonConvert.DeserializeObject<User>(userJson);
-                    InventoryPD3.App.NavegarParaInciar(user);
+                    //InventoryPD3.App.NavegarParaInciar(user);
+                    InventoryPD3.App.NavegarParaEntrarCliente(user);
                 }
 
                 if (account != null)
@@ -96,7 +97,7 @@ namespace Pages
                 }
 
                 await store.SaveAsync(account = e.Account, Constants.AppName);                
-                await DisplayAlert("Email address", user.Email, "OK");
+                await DisplayAlert("Aviso!","Por favor, entre com o seu código de cliente de 6 caracteres!", "OK");
             }
         }
 

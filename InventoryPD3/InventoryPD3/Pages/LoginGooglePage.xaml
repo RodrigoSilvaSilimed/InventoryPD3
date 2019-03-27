@@ -1,10 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Pages.LoginGooglePage">
+             x:Class="Pages.LoginGooglePage"
+              BackgroundColor="#FF8257">
+    <ContentPage.Resources>
+        <!--seção para style -->
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <!--style implícito-->
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="FontSize" Value="16"/>
+            </Style>
+            <Style TargetType="ImageButton">
+                <!--style implícito-->
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="WidthRequest" Value="200"/>
+            </Style>    
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <Button Text="Google" x:Name="OnLogin" Clicked= "OnLoginClicked"/>
+            <ImageButton Source="googleloginbutton.png" Clicked= "OnLoginClicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
