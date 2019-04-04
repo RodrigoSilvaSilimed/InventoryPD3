@@ -6,7 +6,7 @@
     <ContentPage.Content>
         <StackLayout>
             
-            <Button Image="googleloginbutton.png" Scale="0.25"  VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="Transparent" Clicked="GoLogin"/>
+            <Button Image="googleloginbutton.png" Scale="1"  VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="Transparent" Clicked="GoLogin"/>
             <Button Clicked="Sair"/>
         </StackLayout>
     </ContentPage.Content>

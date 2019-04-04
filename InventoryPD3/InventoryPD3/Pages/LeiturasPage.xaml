@@ -2,8 +2,29 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Pages.LeiturasPage"
-             BackgroundColor="#FF8257">
+             BackgroundColor="White">
+
+    <ContentPage.Resources>
+        <!--seção para style -->
+        <ResourceDictionary>
+
+            <Style TargetType="Label">
+                <!--style implícito-->
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
+                <Setter Property="FontSize" Value="16"/>
+            </Style>
+            <Style x:Key="lblTitulo1" TargetType="Label">
+                <!--style explícito-->
+                <Setter Property="VerticalOptions" Value="StartAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="FontSize" Value="16"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
+        <ScrollView>
         <StackLayout>
             <StackLayout Orientation="Horizontal">
                 <Label Text="Números de série lidos no inventário atual"/>
@@ -32,7 +53,8 @@
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
                                 <StackLayout Grid.Column="0">
-                                    <Label Text="{Binding CodigoBarras}" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Barcode}" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Cliente}"/>
                                 </StackLayout>
                                 <StackLayout Grid.Column="1" Orientation="Horizontal">
                                     <Label Text="+Excluir">
@@ -47,5 +69,6 @@
                 </ListView.ItemTemplate>
             </ListView>
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

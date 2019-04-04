@@ -19,12 +19,12 @@ namespace InventoryPD3.Servico.DAL
             string caminho = dep.GetCaminho("database.sqlite");
 
             _conexao = new SQLiteConnection(caminho);
+            //var i = _conexao.DropTable<Entidade_Leitura>();//apagar a tabela. Uso quando a
             _conexao.CreateTable<Entidade_Leitura>();
+           
         
             //Query("delete Entidade_Leitura ");
-        }    
-
-       
+        }       
 
         public List<Entidade_Leitura> Consultar(string inventario, string cliente)
         {
@@ -71,6 +71,17 @@ namespace InventoryPD3.Servico.DAL
         public void ApagarTabelaLeitura()
         {
             _conexao.DropTable<Entidade_Leitura>();
+            _conexao.CreateTable<Entidade_Leitura>();
+        }
+        public void ApagarLeituraCliente(string cliente)
+        {
+            var lista = _conexao.Table<Entidade_Leitura>().Where(a => (a.Cliente == cliente)).ToList();
+            lista.ForEach(delegate (Entidade_Leitura Leitura)
+            {
+                _conexao.Delete(Leitura);
+
+            });
+            
         }
     }
 }

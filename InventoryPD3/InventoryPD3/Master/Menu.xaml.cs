@@ -16,6 +16,7 @@ using Firebase.Storage;
 using Firebase.Database;
 using Firebase.Database.Query;
 using InventoryPD3.Servico.Entidade;
+using InventoryPD3.Servico.DAL;
 
 
 namespace Master
@@ -80,18 +81,34 @@ namespace Master
         {
             Detail = new NavigationPage(new Pages.StatusPage());
             IsPresented = false; //para esconder o menu
-        }
-        private void GoPaginaAjuda(object sender, EventArgs args)
+        }*/
+        async private void ApagarDados(object sender, EventArgs args)
         {
-            Detail = new NavigationPage(new Pages.AjudaPage());           
+            var action = await DisplayActionSheet ("Quais Leituras deseja apagar?", "Cancelar", null, "Cliente Atual", "Todos os Clientes");
+            if (action == "Do Cliente Atual")
+            {
+                var answer = await DisplayAlert("Atenção!", "Essa operação é irreversível! Você tem certeza?", "Sim", "Não");
+                if (answer == true)
+                {
+                    DAL_Database sql = new DAL_Database();
+                    sql.ApagarLeituraCliente(InventoryPD3.App._Usuario.Cliente);                    
+                }
+            }
+            else
+            {
+                if (action == "De Todos os Clientes")
+                {
+                    var answer = await DisplayAlert("Atenção!", "Essa operação é irreversível! Você tem certeza?", "Sim", "Não");
+                    if (answer == true)
+                    {
+                        DAL_Database sql = new DAL_Database();
+                        sql.ApagarTabelaLeitura();
+                    }
+                }
+            }
             IsPresented = false; //para esconder o menu
-        }
-        private void GoPaginaSobre(object sender, EventArgs args)
-        {
-            Detail = new NavigationPage(new Pages.SobrePage());
-            IsPresented = false; //para esconder o menu 
-        }
-        */
+            }
+        
 
         async private void GoSair(object sender, EventArgs args)
         {

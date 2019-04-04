@@ -29,7 +29,7 @@ namespace Pages
             entry_cod_cliente.MaxLength = Cod_Cliente_Len;
             _login = Login;
             NomeUsuario.Text = Login.GivenName + " " + Login.FamilyName;
-            email.Text = Login.Email;
+            //email.Text = Login.Email;
             img_User.Source = Login.Picture;
             entry_cod_cliente.Focus();
         }
@@ -82,11 +82,19 @@ namespace Pages
                 }
                 else
                 {
-                    if ((cliente.Length == Cod_Cliente_Len))
+                    if (cliente.Length == 0)
                     {
-                        return true;
+                        Mostrar_Alerta("Por favor, digite o código de cliente!");
+                        return false;
                     }
-                    return false;
+                    else
+                    {
+                        if ((cliente.Length == Cod_Cliente_Len))
+                        {
+                            return true;
+                        }
+                        return false;
+                    }
                 }
             }
 

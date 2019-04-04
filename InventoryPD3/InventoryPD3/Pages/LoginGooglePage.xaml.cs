@@ -23,9 +23,15 @@ namespace Pages
 		{
 			InitializeComponent ();
             store = AccountStore.Create();
+            
         }
 
         void OnLoginClicked(object sender, EventArgs e)
+        {
+            InitAuth();
+        }
+
+        private void InitAuth()
         {
             string clientId = null;
             string redirectUri = null;
@@ -62,7 +68,6 @@ namespace Pages
 
             var presenter = new Xamarin.Auth.Presenters.OAuthLoginPresenter();
             presenter.Login(authenticator);//chama a página de autenticação
-            
         }
 
         async void OnAuthCompleted(object sender, AuthenticatorCompletedEventArgs e)

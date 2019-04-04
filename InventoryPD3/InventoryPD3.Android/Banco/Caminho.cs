@@ -22,7 +22,7 @@ namespace InventoryPD3.Droid.Banco
     {
         public string GetCaminho(string NomeArquivoBanco)
         {
-
+            //no Android costuma ser /data/user/0/br.com.silimed.InventoryPD3/files/database.sqlite
             var caminhoDaPasta = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
             string caminhoBanco = Path.Combine(caminhoDaPasta, NomeArquivoBanco);
             return caminhoBanco;

@@ -2,43 +2,47 @@
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:paf="clr-namespace:Pages"             
-             x:Class="Master.Menu">
+             x:Class="Master.Menu"
+             xmlns:custom="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin">
     
     <MasterDetailPage.Master>
-        <ContentPage Title="Menu" BackgroundColor="#FF8257">
-            
+        <ContentPage Title="Menu" BackgroundColor="White">
+           
             <ContentPage.Resources>
                 <ResourceDictionary>
                     <Style TargetType="Button">
                         <Setter Property="FontSize" Value="20"/>
-                        <Setter Property="TextColor" Value="#7D7C7D"/>
+                        <Setter Property="TextColor" Value="Gray"/>
+                        <!--<Setter Property="TextColor" Value="#7D7C7D"/>-->
                         <Setter Property="BackgroundColor" Value="Transparent"/>
+                        <Setter Property="HorizontalOptions" Value="Center"/>
+                        <Setter Property="VerticalOptions" Value="Center"/>
 
                     </Style>
                     <Style TargetType="Label">
                         <Setter Property="FontSize" Value="20"/>
-                        <Setter Property="TextColor" Value="#7D7C7D"/>
+                        <Setter Property="TextColor" Value="Gray"/>
                         <Setter Property="BackgroundColor" Value="Transparent"/>
-
+                        <Setter Property="HorizontalOptions" Value="Center"/>
+                        <Setter Property="VerticalOptions" Value="Center"/>
                     </Style>
                 </ResourceDictionary>
             </ContentPage.Resources>
                 
             <StackLayout>
                 <StackLayout Padding="30">
-                    <Image Source="user.png" x:Name="img_User" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <custom:CircleImage Source="user.png" x:Name="img_User"/>
                     <Label Text="Usuário" x:Name="NomeUsuario"/>
                     <Label Text="E-Mail" x:Name="email"/>
                     <Label Text="Cliente" x:Name="_cliente"/>
                 </StackLayout>
                 <StackLayout Spacing="10">
-                    <Button Text="Scan" Clicked="GoPaginaScan"/>
-                    <Button Text="Leituras" Clicked="GoPaginaLeituras"/>
-                   <!-- 
-                    <Button Text="Status" Clicked="GoPaginaStatus"/>
-                    <Button Text="Ajuda" Clicked="GoPaginaAjuda"/>
-                    <Button Text="Sobre" Clicked="GoPaginaSobre"/>
-                    -->
+                    <Button Text="Escanear" Clicked="GoPaginaScan"/>
+                    <Button Text="SNs Lidos" Clicked="GoPaginaLeituras"/>
+                    <!--  #FF8257
+                    <Button Text="Status" Clicked="GoPaginaStatus"/>-->
+                    <Button Text="Apagar Dados" Clicked="ApagarDados"/>
+                   
                     <Button Text="Sair" Clicked="GoSair"/>
                 </StackLayout>
             </StackLayout>

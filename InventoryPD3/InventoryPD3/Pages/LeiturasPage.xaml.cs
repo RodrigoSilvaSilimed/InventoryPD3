@@ -26,7 +26,7 @@ namespace Pages
         private void ConsultarLeituras()
         {
             DAL_Database database = new DAL_Database();
-            Lista = database.Consultar((DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString()), App._Usuario.Cliente);
+            Lista = database.Consultar((DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString("00")), App._Usuario.Cliente);
 
             ListaLeituras.ItemsSource = Lista;
             lblCount.Text = Lista.Count.ToString();

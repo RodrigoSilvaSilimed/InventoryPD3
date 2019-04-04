@@ -105,7 +105,7 @@ namespace Pages
                                 leitura.Synced = false;
                                 //leitura.CaminhoImg = "N/A";
                                 //leitura.urlImg = "N/A";
-                                leitura.Data = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString();
+                                leitura.Data = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString("00");
                                 //leitura.TimestampFoto = DateTime.Now.ToString();
                                 //TakeCam(leitura); comentado pois desde 25/01 decidiu-se que não vamos mais armazenar a imagem do produto
                                 //DisplayAlert("Código Lido!", "O SN " + result.Text + " foi lido com sucesso!", "OK");
@@ -125,7 +125,7 @@ namespace Pages
                                 leitura.Synced = false;
                                 //leitura.CaminhoImg = "N/A";
                                 //leitura.urlImg = "N/A";
-                                leitura.Data = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString();
+                                leitura.Data = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString("00");
                                 //TakeCam(leitura); comentado pois desde 25/01 decidiu-se que não vamos mais armazenar a imagem do produto
                                 //leitura.TimestampFoto = DateTime.Now.ToString();
                                 //DisplayAlert("Código Lido!", "O SN " + result.Text + " foi lido com sucesso!", "OK");
@@ -247,7 +247,9 @@ namespace Pages
                 // Do something
                 AtualizaWiFiStatus();
                 AtualizaGPSStatus();
-                
+                AtualizaInventario();
+
+
                 return true; // True = Repeat again, False = Stop the timer
             });
         }
@@ -299,10 +301,10 @@ namespace Pages
             lb_Inventario.Text = "Inventário " + InventoryPD3.App._inventario;            
         }
 
-        private void ConsultarLeituras()
+        public void ConsultarLeituras()
         {
             DAL_Database database = new DAL_Database();
-            var Lista = database.Consultar((DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString()), App._Usuario.Cliente);           
+            var Lista = database.Consultar((DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString("00")), App._Usuario.Cliente);           
 
             //Lista = database.Pesquisa()
             lb_Contagem.Text = Lista.Count().ToString()+ " Unidades";

@@ -10,6 +10,7 @@ using Plugin.Media;
 using Plugin.Permissions;
 using Plugin.CurrentActivity;
 using InventoryPD3.Servico.BLL;
+using ImageCircle.Forms.Plugin.Droid;
 
 namespace InventoryPD3.Droid
 {
@@ -27,8 +28,8 @@ namespace InventoryPD3.Droid
             base.OnCreate(savedInstanceState);
             //await CrossMedia.Current.Initialize();//Adicionei por causa da Câmera
             CrossCurrentActivity.Current.Init(this, savedInstanceState); // Sem essa linha o app não pede permissão erro: "Plugin.Media.Abstractions.MediaPermissionException: Camera permission(s) are required."
+            ImageCircleRenderer.Init();
 
-           
 
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 

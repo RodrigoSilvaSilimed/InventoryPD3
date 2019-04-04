@@ -6,6 +6,7 @@ using Foundation;
 using UIKit;
 
 using InventoryPD3.Servico.BLL;
+using ImageCircle.Forms.Plugin.iOS;
 
 namespace InventoryPD3.iOS
 {
@@ -27,6 +28,7 @@ namespace InventoryPD3.iOS
             global::Xamarin.Forms.Forms.Init();
             global::Xamarin.Auth.Presenters.XamarinIOS.AuthenticationConfiguration.Init();
             global::ZXing.Net.Mobile.Forms.iOS.Platform.Init();
+            ImageCircleRenderer.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
